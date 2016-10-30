@@ -4,9 +4,11 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Image Name</th>
-      <th>Size</th>
-      <th>Created Date</th>
+      <th>REPOSITORY</th>
+      <th>TAG</th>
+      <th>IMAGE ID</th>
+      <th>CREATED</th>
+      <th>SIZE</th>
       <th></th>
       <th></th>
     </tr>
@@ -14,19 +16,26 @@
   <tbody>
     <tr *ngFor="let image of images">
       <th *ngIf="image.RepoTags[0]">
-        {{ image.RepoTags[0] }}
+        {{ image.RepoTags[0].split(":")[0] }}
+      </th>
+      <th *ngIf="image.RepoTags[0]">
+        {{ image.RepoTags[0].split(":")[1] }}
+      </th>
+      <th *ngIf="image.Id">
+        {{ image.Id.split(":")[1].slice(0, 12) }}
       </th>
       <th *ngIf="image.Created">
         {{ image.Created }}
       </th>
       <th *ngIf="image.Size">
-        {{ image.Size }}
+        {{ (image.Size / 1000000).toFixed(3) }}
+        MB
       </th>
       <th>
-        <button type="button" class="btn btn-primary" (click)="createContainer(image)">Start Container</button>
+        <button type="button" class="btn btn-primary" (click)="createContainer(image)">Create</button>
       </th>
       <th>
-        <button type="button" class="btn btn-danger">Remove Image</button>
+        <button type="button" class="btn btn-danger">Remove</button>
       </th>
     </tr>
   </tbody>

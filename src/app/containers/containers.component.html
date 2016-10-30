@@ -4,26 +4,38 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Container Name</th>
-      <th>Image</th>
-      <th>Created Date</th>
-      <th>Status</th>
+      <th>CONTAINER ID</th>
+      <th>IMAGE</th>
+      <th>COMMAND</th>
+      <th>CREATED</th>
+      <th>STATUS</th>
+      <th>PORTS</th>
+      <th>NAMES</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let container of runningContainers">
-      <th *ngIf="container.Names[0]">
-        {{ container.Names[0] | slice:1 }}
+      <th *ngIf="container.Id">
+        {{ container.Id.slice(0, 12) }}
       </th>
       <th *ngIf="container.Image">
         {{ container.Image }}
+      </th>
+      <th *ngIf="container.Command">
+        {{ container.Command }}
       </th>
       <th *ngIf="container.Created">
         {{ container.Created }}
       </th>
       <th *ngIf="container.Status">
         {{ container.Status }}
+      </th>
+      <th *ngIf="container.Ports">
+        {{ container.Ports }}
+      </th>
+      <th *ngIf="container.Names[0]">
+        {{ container.Names[0].slice(1) }}
       </th>
       <th>
         <button type="button" class="btn btn-warning" (click)="stopContainer(container.Id)">Stop</button>
@@ -40,27 +52,39 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Container Name</th>
-      <th>Image</th>
-      <th>Created Date</th>
-      <th>Status</th>
+      <th>CONTAINER ID</th>
+      <th>IMAGE</th>
+      <th>COMMAND</th>
+      <th>CREATED</th>
+      <th>STATUS</th>
+      <th>PORTS</th>
+      <th>NAMES</th>
       <th></th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let container of stoppedContainers">
-      <th *ngIf="container.Names[0]">
-        {{ container.Names[0] | slice:1 }}
+      <th *ngIf="container.Id">
+        {{ container.Id.slice(0, 12) }}
       </th>
       <th *ngIf="container.Image">
         {{ container.Image }}
+      </th>
+      <th *ngIf="container.Command">
+        {{ container.Command }}
       </th>
       <th *ngIf="container.Created">
         {{ container.Created }}
       </th>
       <th *ngIf="container.Status">
         {{ container.Status }}
+      </th>
+      <th *ngIf="container.Ports">
+        {{ container.Ports }}
+      </th>
+      <th *ngIf="container.Names[0]">
+        {{ container.Names[0].slice(1) }}
       </th>
       <th>
         <button type="button" class="btn btn-success" (click)="restartContainer(container.Id)">Restart</button>
