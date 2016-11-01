@@ -5,16 +5,23 @@ import { ImageService } from './image.service';
 @Component({
   selector: 'app-images',
   templateUrl: './images.component.html',
-  styleUrls: ['./images.component.css']
+  styleUrls: [
+    './images.component.css',
+    '../app.component.css'
+  ]
 })
 export class ImagesComponent implements OnInit {
   images: Image[];
   hasImage: boolean;
 
+  showModal: boolean;
+  image: Image;
+
   constructor(private imageService: ImageService) { }
 
   ngOnInit() {
     this.getAllImages();
+    this.showModal = false;
   }
 
   getAllImages() {
@@ -22,6 +29,13 @@ export class ImagesComponent implements OnInit {
       .subscribe(data => {
         this.images = data;
         this.hasImage = (this.images.length !== 0);
+      });
+  }
+
+  removeImage(id: string) {
+    this.imageService.removeImage(id)
+      .subscribe(data => {
+        this.getAllImages();
       });
   }
 
@@ -38,6 +52,14 @@ export class ImagesComponent implements OnInit {
   startContainer(id: string) {
     this.imageService.startContainer(id)
       .subscribe();
+  }
+
+  getImage(image: Image) {
+    this.image = image;
+  }
+
+  toggleModal() {
+    this.showModal = !this.showModal;
   }
 
 }

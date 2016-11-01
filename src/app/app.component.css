@@ -2,3 +2,40 @@
   position: relative;
   top: 80px;
 }
+
+.modal-dialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  height: 200px;
+  z-index: 100;
+}
+
+.modal-base {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 80;
+}
+
+.modal-title {
+  font-size: 24px;
+}
+
+.modal-body {
+  font-size: 16px;
+}
+
+.btn-modal {
+  width: 80px;
+  font-size: 16px;
+}
+
+.btn-global {
+  width: 100px;
+}

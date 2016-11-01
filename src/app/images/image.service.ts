@@ -31,6 +31,13 @@ export class ImageService {
       .catch(this.handleError);
   }
 
+  removeImage(id: string) {
+    return this.http
+      .delete(this.address + this.toRemove.replace("{id}", id))
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   createContainer(name: string) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });

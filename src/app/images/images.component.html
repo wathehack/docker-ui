@@ -32,11 +32,36 @@
         MB
       </th>
       <th>
-        <button type="button" class="btn btn-primary" (click)="createContainer(image)">Create</button>
+        <button type="button" class="btn btn-primary btn-global" (click)="createContainer(image)">Create</button>
       </th>
       <th>
-        <button type="button" class="btn btn-danger">Remove</button>
+        <button type="button" class="btn btn-danger btn-global" (click)="toggleModal()" (click)="getImage(image)">Remove</button>
       </th>
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="showModal" class="modal-base"></div>
+<div *ngIf="showModal" class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="toggleModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title">
+        <strong>Alert</strong>
+      </h4>
+    </div>
+    <div class="modal-body">
+      <p>
+        Do you want to remove image
+        <strong>{{ image.RepoTags[0] }}</strong>
+        ?
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary btn-modal" (click)="toggleModal()">No</button>
+      <button type="button" class="btn btn-primary btn-modal" (click)="toggleModal()" (click)="removeImage(image.Id)">Yes</button>
+    </div>
+  </div>
+</div>

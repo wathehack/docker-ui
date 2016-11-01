@@ -5,7 +5,10 @@ import { ContainerService } from './container.service';
 @Component({
   selector: 'app-containers',
   templateUrl: './containers.component.html',
-  styleUrls: ['./containers.component.css']
+  styleUrls: [
+    './containers.component.css',
+    '../app.component.css'
+  ]
 })
 export class ContainersComponent implements OnInit {
   runningContainers: Container[];
@@ -14,10 +17,14 @@ export class ContainersComponent implements OnInit {
   hasRunning: boolean;
   hasStopped: boolean;
 
+  showModal: boolean;
+  container: Container;
+
   constructor(private containerService: ContainerService) { }
 
   ngOnInit() {
     this.loadContainers();
+    this.showModal = false;
   }
 
   getRunningContainers() {
@@ -60,6 +67,14 @@ export class ContainersComponent implements OnInit {
       .subscribe(data => {
         this.loadContainers();
       });
+  }
+
+  getContainer(container: Container) {
+    this.container = container;
+  }
+
+  toggleModal() {
+    this.showModal = !this.showModal;
   }
 
 }

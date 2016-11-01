@@ -38,7 +38,7 @@
         {{ container.Names[0].slice(1) }}
       </th>
       <th>
-        <button type="button" class="btn btn-warning" (click)="stopContainer(container.Id)">Stop</button>
+        <button type="button" class="btn btn-warning btn-global" (click)="stopContainer(container.Id)">Stop</button>
       </th>
     </tr>
   </tbody>
@@ -57,7 +57,6 @@
       <th>COMMAND</th>
       <th>CREATED</th>
       <th>STATUS</th>
-      <th>PORTS</th>
       <th>NAMES</th>
       <th></th>
       <th></th>
@@ -80,18 +79,40 @@
       <th *ngIf="container.Status">
         {{ container.Status }}
       </th>
-      <th *ngIf="container.Ports">
-        {{ container.Ports }}
-      </th>
       <th *ngIf="container.Names[0]">
         {{ container.Names[0].slice(1) }}
       </th>
       <th>
-        <button type="button" class="btn btn-success" (click)="restartContainer(container.Id)">Restart</button>
+        <button type="button" class="btn btn-success btn-global" (click)="restartContainer(container.Id)">Restart</button>
       </th>
       <th>
-        <button type="button" class="btn btn-danger" (click)="removeContainer(container.Id)">Remove</button>
+        <button type="button" class="btn btn-danger btn-global" (click)="toggleModal()" (click)="getContainer(container)">Remove</button>
       </th>
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="showModal" class="modal-base"></div>
+<div *ngIf="showModal" class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="toggleModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title">
+        <strong>Alert</strong>
+      </h4>
+    </div>
+    <div class="modal-body">
+      <p>
+        Do you want to remove container
+        <strong>{{ container.Names[0].slice(1) }}</strong>
+        ?
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary btn-modal" (click)="toggleModal()">No</button>
+      <button type="button" class="btn btn-primary btn-modal" (click)="toggleModal()" (click)="removeContainer(container.Id)">Yes</button>
+    </div>
+  </div>
+</div>
